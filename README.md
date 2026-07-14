@@ -45,7 +45,8 @@ F5Narrator/
 
 ## Windows setup
 
-1. Install Python 3.12.
+1. Install Python 3.12.10 or newer. Earlier Python 3.12 patch releases can
+   crash while F5-TTS imports `six` through PySide6/Shiboken on Windows.
 2. Install FFmpeg and ensure `ffmpeg.exe` is on `PATH`.
 3. Install a CUDA-compatible PyTorch build if you have an NVIDIA GPU.
 4. Create and activate a virtual environment:
@@ -53,9 +54,12 @@ F5Narrator/
    ```powershell
    py -3.12 -m venv .venv
    .\.venv\Scripts\Activate.ps1
+   python --version
    python -m pip install --upgrade pip
    pip install -r requirements.txt
    ```
+
+   Confirm that `python --version` reports `Python 3.12.10` or newer.
 
 5. Launch the app:
 
