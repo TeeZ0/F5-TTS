@@ -6,6 +6,7 @@ from pathlib import Path
 
 from PySide6.QtCore import Qt, QThreadPool
 from PySide6.QtWidgets import (
+    QButtonGroup,
     QComboBox,
     QFileDialog,
     QGridLayout,
@@ -61,11 +62,18 @@ class MainWindow(QMainWindow):
         self.script_editor.setPlaceholderText("Paste script here...")
         self.sentences_radio = QRadioButton("Sentences")
         self.paragraphs_radio = QRadioButton("Paragraphs")
+        self.split_mode_group = QButtonGroup(self)
+        self.split_mode_group.addButton(self.sentences_radio)
+        self.split_mode_group.addButton(self.paragraphs_radio)
         self.speed_slider = QSlider(Qt.Orientation.Horizontal)
         self.speed_label = QLabel()
         self.calm_radio = QRadioButton("Calm")
         self.neutral_radio = QRadioButton("Neutral")
         self.dramatic_radio = QRadioButton("Dramatic")
+        self.emotion_group = QButtonGroup(self)
+        self.emotion_group.addButton(self.calm_radio)
+        self.emotion_group.addButton(self.neutral_radio)
+        self.emotion_group.addButton(self.dramatic_radio)
         self.generate_button = QPushButton("Generate")
         self.play_button = QPushButton("Play")
         self.save_button = QPushButton("Save")
