@@ -8,6 +8,7 @@ from pathlib import Path
 
 from app.audio.mastering import AudioMasteringService
 from app.models.settings import SynthesisRequest
+from app.services.import_compat import prepare_f5_tts_import
 from app.text.preprocessing import TextPreprocessingPipeline
 
 ProgressCallback = Callable[[int, str], None]
@@ -62,6 +63,7 @@ class F5TTSService:
         key = (model_name, device)
         if key not in self._engine_by_key:
             try:
+                prepare_f5_tts_import()
                 from f5_tts.api import F5TTS
             except ImportError as exc:
                 if shutil.which("f5-tts_infer-cli") is None:
